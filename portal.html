@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal</title>
+</head>
+<body>
+    <h1>Welcome to the Class Portal</h1>
+    <p id="welcome_msg"></p> <!-- This will display the student's name -->
+
+    <h2>Submit Your Attendance</h2>
+    <a href="https://forms.gle/pKfjapxuCbHdGEKj9" target="_blank">Submit Attendance</a>
+
+    <script>
+        const studentName = localStorage.getItem('studentName');
+        if (studentName) {
+            document.getElementById('welcome_msg').textContent = `Hello, ${studentName}! Welcome to the portal.`;
+        } else {
+            document.getElementById('welcome_msg').textContent = 'Welcome, Guest!';
+        }
+    </script>
+</body>
+</html>
