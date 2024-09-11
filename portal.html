@@ -185,46 +185,230 @@
 <!-- Navbar End -->
 
 
-    <!-- Registration Start -->
-   <!-- Course Work Section -->
-<div id="login-section">
-    <!-- Content of the Submit Course Work section -->
- <div class="container-fluid bg-registration py-2" style="margin: 30px 0;">
-        <div class="container py-5">
-            <div class="row align-items-center">
-                <div class="col-lg-7 mb-5 mb-lg-0">
-                    <div class="mb-4">
-                        <h3 class="text-light text-uppercase mb-3" style="letter-spacing: 5px;">Fill the Form Correctly to acess the Class</h3>
-                        <!--<h1 class="text-white">Fill the Form to acess the Class</h1> -->
-                    </div>
-                    </div>
-                <div class="col-lg-5">
-                    <div class="card border-0">
-                        <div class="card-header bg-light text-center p-4">
-                            <h1 class="m-0">Student Sign In</h1>
-                        </div>
-                        <div class="card-body rounded-bottom bg-primary p-5">
+       <h1 id="welcome_msg"></h1> <!-- This will display the student's name -->
+    
+        <script>
+            const studentName = localStorage.getItem('studentName');
+            if (studentName) {
+                document.getElementById('welcome_msg').textContent = `Hello, ${studentName}! Welcome to the portal.`;
+            } else {
+                document.getElementById('welcome_msg').textContent = 'Welcome, Guest!';
+            }
+        </script>
 
-
-                            <form id="accessForm">
-                                <input type="text" class="form-control border-0 p-4" id="student_name" placeholder="Enter Your Name" required="required">
-                                <br>
-                                <input type="number" class="form-control border-0 p-4" id="access_code" placeholder="Enter Access Code" required="required">
-                                <br>
-                                <button class="btn btn-dark btn-block border-0 py-3" type="submit">Log In</button>
-                            </form>
-                            <p id="error_msg" style="color: red; display: none;">Invalid name or access code. Please try again.</p>
-                            </div>
+ <!-- Carousel Start -->
+ <div class="container-fluid p-0 pb-5 mb-5">
+    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#header-carousel" data-slide-to="1"></li>
+            <li data-target="#header-carousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="min-height: 300px;">
+                <img class="position-relative w-100" src="img/carousel-1.jpg" style="min-height: 300px; object-fit: cover;">
+                <div class="carousel-caption d-flex align-items-center justify-content-center">
+                    <div class="p-5" style="width: 100%; max-width: 900px;">
+                        <h5 class="text-primary text-uppercase mb-md-3">Unlock Your Digital Potential</h5>
+                        <h3 class="display-3 text-white mb-md-3">Shape your career in AI and Cybersecurity with cutting-edge skills</h3>
+                        <a href="index.html" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Log Out</a>
                     </div>
                 </div>
             </div>
+            <div class="carousel-item" style="min-height: 300px;">
+                <img class="position-relative w-100" src="img/carousel-2.jpg" style="min-height: 300px; object-fit: cover;">
+                <div class="carousel-caption d-flex align-items-center justify-content-center">
+                    <div class="p-5" style="width: 100%; max-width: 900px;">
+                        <h5 class="text-primary text-uppercase mb-md-3">Leading the AI Revolution</h5>
+                        <h3 class="display-3 text-white mb-md-4">Prepare to Lead in the Age of AI, Get the required Skills</h3>
+                        <a href="index.html" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Log Out</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" style="min-height: 300px;">
+                <img class="position-relative w-100" src="img/carousel-3.jpg" style="min-height: 300px; object-fit: cover;">
+                <div class="carousel-caption d-flex align-items-center justify-content-center">
+                    <div class="p-5" style="width: 100%; max-width: 900px;">
+                        <h5 class="text-primary text-uppercase mb-md-3">Your Journey to Cyber Mastery</h5>
+                        <h4 class="display-3 text-white mb-md-4">Become a Guardian of the Digital World with Cyber Skills</h4>
+                        <a href="index.html" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Log Out</a>
+                  </div>
+                </div>
+            </div>
         </div>
- </div>
+    </div>
 </div>
+<!-- Carousel End -->
+	
+        <hr>
+        
+        <!-- <h2 class="section-title bg-secondary text-start text-center pe-5" style="color: white;">From Our Archive</h2>-->                
+      
+          
+        <div class="container-fluid pt-2 mb-2">
+              <div class="container">
+                  <div class="section-title">
+                      <h4 class="m-0 text-uppercase font-weight-bold" style="background-color: white; color: red">Past TechCamps</h4>
+                  </div>
+                  <div class="owl-carousel news-carousel carousel-item-4 position-relative">
+                      <div class="position-relative overflow-hidden" style="height: 300px;">
+                          <img class="img-fluid h-100" src="img/studentgroup.jpg" style="object-fit: cover;">
+                         <div class="overlay">
+                              <div class="mb-2">
+                                  <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" style="background-color: #26d48c; color: white"
+                                    href=""></a>
+                               </div>
+                              <a class="h5 m-0 text-white text-uppercase font-weight-semi-bold" href="">h</a>
+                          <a href="" class="btn btn-secondary text-white px-3 py-2 rounded-pill"></a>
+                        </div>
+                      </div>
+                      <div class="position-relative overflow-hidden" style="height: 300px;">
+                           <img class="img-fluid h-100" src="img/class2.jpg" style="object-fit: cover;">
+                       <div class="overlay">
+                              <div class="mb-2">
+                                  <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" style="background-color: red; color: white"
+                                             href=""></a>
+                              </div>
+                        <a class="h5 m-0 text-white text-uppercase font-weight-semi-bold" href=""></a>
+                          <a href="" class="btn btn-secondary text-white px-3 py-2 rounded-pill"></a>
+           </div>
+                      </div>
+      
+              <div class="position-relative overflow-hidden" style="height: 300px;">
+                          <img class="img-fluid h-100" src="img/Children1.jpg" style="object-fit: cover;">
+                        <div class="overlay">
+                              <div class="mb-2">
+                                  <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" style="background-color: red; color: white"
+                                             href=""></a>
+                                    </div>
+                              <a class="h5 m-0 text-white text-uppercase font-weight-semi-bold" href=""></a>
+                              <a href="" class="btn btn-secondary text-white px-3 py-2 rounded-pill"></a></div>
+              </div>
+              
+                      <div class="position-relative overflow-hidden" style="height: 300px;">
+                           <img class="img-fluid h-100" src="img/class1.jpg" style="object-fit: cover;">
+                       <div class="overlay">
+                              <div class="mb-2">
+                                  <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" style="background-color: #26d48c; color: white"
+                                               href=""></a>
+                                 </div>
+                              <a class="h5 m-0 text-white text-uppercase font-weight-semi-bold" href=""></a>
+                          <a href="" class="btn btn-secondary text-white px-3 py-2 rounded-pill"></a>
+           </div>
+                      </div>
+                      <div class="position-relative overflow-hidden" style="height: 300px;">
+                          <img class="img-fluid h-100" src="img/class.jpg" style="object-fit: cover;">
+                         <!-- <div class="overlay"> -->
+                              <div class="mb-2"> 
+                                  <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" style="background-color: red; color: white"
+                                             href=""></a>
+                                   </div>
+                              <a class="h5 m-0 text-white text-uppercase font-weight-semi-bold" href=""></a>
+                              <a href="" class="btn btn-secondary text-white px-3 py-2 rounded-pill"></a>
+          </div>
+                      </div>
+              
+                     </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Featured News Slider End 
+          
+            
+        
+              <blockquote>
+      <p><i>"Our Tech Hub is where young minds embark on an extraordinary journey into the world of technology and innovation"</i></p>
+               </blockquote> -->
 
-   
-          <p id="error_msg" style="color: red; display: none;">Invalid name or access code. Please try again.</p> 
 
+
+
+
+      <!-- Registration Start -->
+       <!-- Attendance Section -->
+<section id="attendance-section">
+ <div class="container-fluid bg-registration py-3" style="margin: 20px 0;">
+  <div class="container py-3">
+      <div class="row align-items-center justify-content-between">
+          <!-- Left Sign Up Card -->
+          <div class="col-lg-5 mb-8">
+              <div class="card border-0">
+                  <!-- Top White Background -->
+                  <div class="card-header bg-light text-center p-4">
+                      <h1 class="m-0">Class Register</h1>
+                  </div>
+                  <!-- Bottom Blue Background with Button -->
+                  <div class="card-body rounded-bottom p-5" style="background-color: #FF6600;">
+                    <!-- Button with hyperlink -->
+                      <div class="text-center">
+                          <a href="https://forms.gle/pKfjapxuCbHdGEKj9" class="btn btn-light btn-lg rounded-pill-btn">Mark Attendance</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Right Sign Up Card -->
+          <div class="col-lg-5 mb-8">
+              <div class="card border-0">
+                  <!-- Top White Background -->
+                  <div class="card-header bg-light text-center p-4">
+                      <h1 class="m-0">Course Works</h1>
+                  </div>
+                  <!-- Bottom Blue Background with Button -->
+                  <div class="card-body rounded-bottom p-5" style="background-color: #FF6600;">
+                    <!-- Button with hyperlink -->
+                      <div class="text-center">
+                          <a href="https://forms.gle/gpiiAh7zVqe41h869" class="btn btn-light btn-lg rounded-pill-btn">Submit</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+  </section>
+<!-- Registration End -->
+
+
+  
+      <!-- Blog Start -->
+      <div class="container-fluid py-2">
+          <div class="container pt-5 pb-3">
+              <div class="text-center mb-5">
+               <!-- <h2 class="section-title bg-secondary text-start text-center pe-3" style="color: white;">Our Exciting Courses</h2> -->                 
+                  <h1>Lecture Notes</h1>
+              </div>
+              <div class="row pb-3">
+                  <div class="col-lg-4 mb-4">
+                      <div class="blog-item position-relative overflow-hidden rounded mb-2">
+                          <img class="img-fluid" src="img/blog-1.jpg" alt="">
+                          <a class="blog-overlay text-decoration-none" href="">
+                              <h5 class="text-white mb-3">Artificial Intelligence</h5>
+                              <p class="text-primary m-0">Engr Ifeanyi Barth</p>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 mb-4">
+                      <div class="blog-item position-relative overflow-hidden rounded mb-2">
+                          <img class="img-fluid" src="img/blog-2.jpg" alt="">
+                          <a class="blog-overlay text-decoration-none" href="">
+                              <h5 class="text-white mb-3">Cybersecurity</h5>
+                              <p class="text-primary m-0">Sir Ugochukwu</p>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 mb-4">
+                      <div class="blog-item position-relative overflow-hidden rounded mb-2">
+                          <img class="img-fluid" src="img/blog-3.jpg" alt="">
+                          <a class="blog-overlay text-decoration-none" href="">
+                              <h5 class="text-white mb-3">Soft Skills</h5>
+                              <p class="text-primary m-0">Dr Mrs Ajero</p>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Blog End 
 
 <div class="container-fluid bg-dark text-white py-2 px-sm-3 px-lg-5" style="margin-top: 90px;">
   <div class="row justify-content-center pt-5">
