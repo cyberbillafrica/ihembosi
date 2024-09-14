@@ -114,6 +114,59 @@
             padding: 10px 20px !important; /* Adjust padding for a better button look */
             text-align: center !important;
         }
+
+         h1, h2 {
+        text-align: center;
+        color: var(--primary);
+    }
+    .week {
+        background-color: #fff;
+        border-radius: 5px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .day {
+        margin-bottom: 10px;
+    }
+    .day-header {
+        background-color: var(--primary);
+        color: #fff;
+        padding: 12px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s ease;
+    }
+    .day-header:hover {
+        background-color: #5D5B7A;
+    }
+    .day-content {
+        padding: 0 15px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, padding 0.3s ease, background-color 0.3s ease;
+        border-radius: 0 0 5px 5px;
+    }
+    .day-content.expanded {
+        padding: 15px;
+        background-color: #FFF0E6;
+        border: 1px solid var(--secondary);
+        border-top: none;
+    }
+    .expand-icon {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: var(--secondary);
+    }
+    .week h2 {
+        background-color: var(--secondary);
+        color: #fff;
+        padding: 10px;
+        margin: 0;
+        border-radius: 5px 5px 0 0;
+    }
     </style>
 </head>
 
