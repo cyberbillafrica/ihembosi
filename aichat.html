@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ihembosi Village Chatbot</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFF0E6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chatbot-container {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+            background-color: #001D23;
+            margin: 50px auto;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: #FFF;
+        }
+
+        .chat-header {
+            background-color: #FF6F0F;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #FFF;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .chat-bubble {
+            background-color: #FFF;
+            color: #001D23;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            font-size: 14px;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #F8F8F9;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #FF6F0F;
+        }
+
+        .input-box {
+            display: flex;
+            border-top: 1px solid #FFF;
+        }
+
+        input {
+            width: 80%;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            border-top-left-radius: 10px;
+        }
+
+        button {
+            width: 20%;
+            background-color: #FF6F0F;
+            color: white;
+            font-size: 16px;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-top-right-radius: 10px;
+        }
+
+        button:hover {
+            background-color: #FF570A;
+        }
+
+        /* Scrollbar Styles */
+        .chat-box::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background-color: #FF6F0F;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chatbot-container">
+        <div class="chat-header">
+            Ihembosi Village Chatbot
+        </div>
+
+        <div class="chat-box" id="chat-box">
+            <!-- Initial Bot Message -->
+            <div class="chat-bubble bot-message">
+                Hello! I’m your Ihembosi Village Assistant. How can I help you today?
+            </div>
+        </div>
+
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Ask me anything...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch more detailed data from Wikipedia's Page Extracts API
+        async function getWikipediaData(query) {
+            const url = `https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&exintro&explaintext&titles=${query}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                const pages = data.query.pages;
+                const page = pages[Object.keys(pages)[0]];  // Get the first page in the result
+
+                if (page.extract) {
+                    return page.extract;  // Return the page extract (introductory content)
+                } else {
+                    return "Sorry, I can't find information on that.";  // Fallback if no content is available
+                }
+            } catch (error) {
+                console.error('Error fetching Wikipedia data:', error);
+                return "I'm having trouble finding that information at the moment.";
+            }
+        }
+
+        // Function to handle sending messages
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (!userInput.trim()) return;
+
+            displayUserMessage(userInput);
+
+            getWikipediaData(userInput).then(response => {
+                displayBotMessage(response);
+            });
+
+            document.getElementById('user-input').value = '';  // Clear Input
+        }
+
+        // Function to display user message
+        function displayUserMessage(message) {
+            const chatBox = document.getElementById('chat-box');
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('chat-bubble', 'user-message');
+            userMessage.textContent = message;
+            chatBox.appendChild(userMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Function to display bot response
+        function displayBotMessage(message) {
+            const chatBox = document.getElementById('chat-box');
+            const botMessage = document.createElement('div');
+            botMessage.classList.add('chat-bubble', 'bot-message');
+            botMessage.textContent = message;
+            chatBox.appendChild(botMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+</body>
+</html>
