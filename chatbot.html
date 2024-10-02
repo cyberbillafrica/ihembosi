@@ -5,7 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ihembosi Village Chatbot</title>
     <style>
-        /* Add your chatbot CSS styling here (same as the previous example) */
+       body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFF0E6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chatbot-container {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+            background-color: #001D23;
+            margin: 50px auto;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: #FFF;
+        }
+        
+        .chat-header {
+            background-color: #FF6F0F;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #FFF;
+        }
+
+        .chat-box {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .chat-bubble {
+            background-color: #FFF;
+            color: #001D23;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            font-size: 14px;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #F8F8F9;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #FF6F0F;
+        }
+        
+        .input-box {
+            display: flex;
+            border-top: 1px solid #FFF;
+        }
+
+        input {
+            width: 80%;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            border-top-left-radius: 10px;
+        }
+
+        button {
+            width: 20%;
+            background-color: #FF6F0F;
+            color: white;
+            font-size: 16px;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-top-right-radius: 10px;
+        }
+
+        button:hover {
+            background-color: #FF570A;
+        }
+
+        /* Scrollbar Styles */
+        .chat-box::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background-color: #FF6F0F;
+            border-radius: 10px;
+        }/* Add your chatbot CSS styling here (same as the previous example) */
     </style>
 </head>
 <body>
