@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ihembosi Village Chatbot</title>
+    <style>
+        /* Add your chatbot CSS styling here (same as the previous example) */
+    </style>
+</head>
+<body>
+
+    <div class="chatbot-container">
+        <div class="chat-header">
+            Ihembosi Village Chatbot
+        </div>
+
+        <div class="chat-box" id="chat-box">
+            <!-- Initial Bot Message -->
+            <div class="chat-bubble bot-message">
+                Hello! I’m your Ihembosi Village Assistant. How can I help you today?
+            </div>
+        </div>
+
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Ask me anything...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        const apiKey = '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';  // Replace with your OpenAI API key
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (!userInput.trim()) return;
+
+            const chatBox = document.getElementById('chat-box');
+            
+            // Append User Message
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('chat-bubble', 'user-message');
+            userMessage.textContent = userInput;
+            chatBox.appendChild(userMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Call OpenAI API for dynamic response
+            getBotResponse(userInput)
+                .then(response => {
+                    // Append Bot Response
+                    const botMessage = document.createElement('div');
+                    botMessage.classList.add('chat-bubble', 'bot-message');
+                    botMessage.textContent = response;
+                    chatBox.appendChild(botMessage);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                });
+
+            document.getElementById('user-input').value = '';  // Clear Input
+        }
+
+        async function getBotResponse(userInput) {
+            try {
+                const response = await axios.post('https://api.openai.com/v1/completions', {
+                    model: "text-davinci-003",  // Use the appropriate GPT model
+                    prompt: userInput,
+                    max_tokens: 100,  // Adjust the token limit based on how long you want the responses
+                    temperature: 0.7  // Adjust the creativity of responses (0.7 is a good starting point)
+                }, {
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                return response.data.choices[0].text.trim();
+            } catch (error) {
+                console.error("Error fetching OpenAI response:", error);
+                return "Sorry, I couldn't process that request right now.";
+            }
+        }
+    </script>
+
+</body>
+</html>
