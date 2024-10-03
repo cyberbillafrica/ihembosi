@@ -424,7 +424,150 @@ Firewalls are a critical component of network security, acting as the first line
             {
                 date: "2 October",
                 day: "Wednesday",
-                content: `Introduction to O`
+                content: `Intrusion Detection Systems (IDS) and Their Role in Offensive Security
+Overview
+An Intrusion Detection System (IDS) is a security solution that monitors network or system activities for malicious activities or policy violations. In offensive security, understanding how an IDS operates allows attackers to either evade detection or generate alerts to test defenses. This lecture will introduce the concepts behind IDS, how they work, and how offensive security techniques interact with them, followed by a step-by-step hands-on exercise.
+
+Lesson Objectives
+By the end of this lesson, students will:
+
+Understand what an Intrusion Detection System (IDS) is.
+Learn the difference between IDS types and detection techniques.
+Explore how offensive security professionals attempt to evade IDS.
+Conduct a hands-on exercise using a popular IDS tool, Snort.
+1. What is an Intrusion Detection System (IDS)?
+An IDS is a tool that detects malicious activity or violations of security policies within a network or system by analyzing traffic or log data. It does not prevent attacks, but it alerts administrators when suspicious activity is detected.
+
+2. Types of IDS
+Network-based IDS (NIDS):
+
+Monitors network traffic for suspicious activities.
+Typically deployed at strategic points within the network (e.g., near firewalls or routers).
+Example: Snort.
+Host-based IDS (HIDS):
+
+Monitors activities on individual hosts, such as system files, applications, and log files.
+Example: OSSEC.
+
+3. IDS Detection Techniques
+Signature-based Detection:
+
+Relies on predefined patterns (signatures) of known threats to detect attacks.
+Weakness: Cannot detect zero-day attacks (new threats).
+Anomaly-based Detection:
+
+Compares current activity with a baseline of normal behavior. Deviations from this baseline trigger alerts.
+Strength: Can detect new or unknown threats.
+Hybrid Detection:
+
+Combines both signature-based and anomaly-based approaches for more comprehensive detection.
+
+4. How IDS Relates to Offensive Security
+Evasion Techniques: Attackers may use methods to avoid detection by IDS, such as:
+
+Fragmenting packets to confuse the IDS.
+Using encrypted channels to hide payloads.
+Polymorphic attacks that change their structure to evade signature-based detection.
+Penetration Testing of IDS: Penetration testers simulate attacks to see how well the IDS responds, analyzing whether it detects malicious activity and how accurately it raises alerts.
+
+5. IDS Deployment Strategies
+Inline IDS: Positioned in the direct path of network traffic. Traffic is analyzed in real-time.
+Passive IDS: Monitors network traffic by tapping into the network through a mirror port. Traffic isn’t interrupted but analyzed in real-time.
+
+
+6. Hands-On Lab: Using Snort as an IDS
+For this exercise, we'll use Snort, one of the most popular open-source Network-based Intrusion Detection Systems (NIDS).
+
+Step 1: Install Snort
+Update your system:
+
+bash
+sudo apt-get update
+Install Snort:
+
+bash
+sudo apt-get install snort
+During the installation process, you'll be asked to define the network range you want to protect (e.g., 192.168.1.0/24). Provide the relevant network range.
+
+Step 2: Configure Snort
+Open Snort’s configuration file in a text editor:
+
+bash
+sudo nano /etc/snort/snort.conf
+Define the network variable: Locate the line ipvar HOME_NET and set it to your network’s range:
+
+bash
+ipvar HOME_NET 192.168.1.0/24
+Choose appropriate rule sets: Snort uses rules to detect intrusions. By default, Snort comes with some basic rules. You can download additional rules from the Snort website or use community-contributed rules.
+
+Step 3: Test Snort in IDS Mode
+Run Snort in IDS mode to start monitoring traffic:
+
+bash
+sudo snort -A console -q -c /etc/snort/snort.conf -i eth0
+-A console: Tells Snort to print alerts to the console.
+-c /etc/snort/snort.conf: Specifies the configuration file to use.
+-i eth0: Specifies the network interface to monitor.
+This command starts Snort in intrusion detection mode, monitoring traffic on your network.
+
+Step 4: Simulate an Attack
+We will simulate some traffic that may trigger Snort's alert mechanisms:
+
+Ping Sweep: A basic reconnaissance technique attackers use to discover live hosts on a network. Run this from a different machine or virtual machine on the same network:
+
+bash
+ping -c 5 192.168.1.1
+Port Scan: Use Nmap to scan for open ports on a target machine:
+
+bash
+nmap -sS 192.168.1.1
+This should trigger alerts in Snort, as port scans are common indicators of potential attacks.
+
+Step 5: Analyze Alerts
+Snort will print out alerts in real-time on the console. Look for alerts that match the traffic you simulated, like "ICMP Echo Request" for the ping sweep or "SYN Scan" for the port scan.
+
+Example output:
+
+bash
+[**] [1:1000001:0] ICMP Echo Request [**]
+[Classification: Attempted Information Leak] [Priority: 2]
+08/10-10:45:23.123456 192.168.1.100 -> 192.168.1.1
+ICMP TTL:64 TOS:0x0 ID:54321 IpLen:20 DgmLen:84
+Type:8  Code:0  ID:12345   Seq:1  ECHO
+
+
+7. Offensive Security Techniques for Evading IDS
+In offensive security, penetration testers simulate attacks to test whether an IDS can detect them, but they also test methods for evading detection. Some common IDS evasion techniques include:
+
+Packet Fragmentation: Attackers split their payload into smaller packets to evade detection:
+
+bash
+nmap -f <target IP>
+Polymorphic Shellcode: Attackers use self-modifying code to avoid detection by signature-based IDS. This requires advanced coding techniques and is typically used in payloads sent through vulnerable systems.
+
+Using Encrypted Channels: Attackers may use SSL or SSH tunnels to encrypt communication, making it harder for the IDS to analyze the payloads.
+
+Slow Scan: By slowing down the pace of a port scan, an attacker might avoid detection, as the IDS may not register the scan as an attack due to long time intervals:
+
+bash
+nmap -T2 <target IP>
+
+
+8. Hands-On Lab: Evading IDS
+In this exercise, we will simulate an evasion technique using Nmap to perform a fragmented packet scan.
+
+Step 1: Perform a Fragmented Scan
+Run an Nmap scan that sends fragmented packets:
+
+bash
+nmap -f <target IP>
+The fragmented packets are harder for the IDS to reassemble, and some IDS configurations may fail to detect the scan properly.
+
+Step 2: Review IDS Response
+Check Snort’s console or log files to see if the fragmented scan was detected. If the IDS rules aren’t tuned to detect fragmented packets, this evasion attempt might go unnoticed.
+
+9. Conclusion
+Intrusion Detection Systems (IDS) play a critical role in monitoring and detecting suspicious activities in a network. Offensive security professionals test these systems to ensure they can detect malicious behavior while also experimenting with evasion techniques to simulate real-world attack scenarios. By understanding how IDS works and how to test its defenses, penetration testers can help improve an organization’s security posture.`
             },
             {
                 date: "3 October",
