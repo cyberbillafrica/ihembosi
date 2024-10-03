@@ -23,7 +23,7 @@
 
  
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/registration.jpg">
+    <link rel="shortcut icon" href="img/course-1.jpg">
     
     <!-- Font Awesome -->
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -152,20 +152,259 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     {
                         date: "24 September",
                         day: "Tuesday",
-                        content: `Introduction to Offensive Security
-                        
-                        
-                        `
+                        content: `General Meeting`
                     },
                     {
                         date: "25 September",
                         day: "Wednesday",
-                        content: ``
+                        content: `Introduction to Offensive Security
+
+Overview
+Offensive security focuses on identifying and exploiting security weaknesses within a system to understand how attackers operate. It's an essential component of cybersecurity that helps professionals strengthen defenses by simulating real-world attacks.
+
+Lesson Objectives
+By the end of this lesson, students will:
+
+Understand what offensive security is.
+Learn the basic tools and techniques used in offensive security.
+Be introduced to penetration testing and ethical hacking.
+Understand the importance of ethical hacking in modern cybersecurity.
+1. What is Offensive Security?
+Offensive security is a proactive and adversarial approach to protecting information systems. Unlike defensive security, which focuses on protecting systems from attacks, offensive security aims to find and exploit vulnerabilities before malicious hackers do.
+
+2. Key Terminology
+Ethical Hacking: The practice of legally and ethically hacking systems to identify vulnerabilities.
+Penetration Testing (Pen Testing): Simulating an attack on a system to find vulnerabilities.
+Red Teaming: A full-scale attack simulation that mimics real-world adversaries.
+Vulnerability: A weakness in a system that could be exploited to cause harm.
+Exploit: A method or tool used to take advantage of a vulnerability.
+
+3. Types of Attacks in Offensive Security
+Social Engineering: Manipulating people to give up confidential information.
+Network Attacks:
+
+Man-in-the-Middle (MITM): Intercepting communication between two parties.
+Denial-of-Service (DoS): Flooding a system with traffic to make it unavailable.
+Web Application Attacks:
+SQL Injection: Inserting malicious SQL code into a query to manipulate databases.
+
+Cross-Site Scripting (XSS): Injecting malicious scripts into web pages viewed by others.
+Malware: Software designed to disrupt, damage, or gain unauthorized access to a system.
+4. Phases of an Offensive Security Engagement
+Reconnaissance (Information Gathering)
+
+Passive (no direct interaction) and active (direct interaction) methods of gathering information about a target.
+Tools: Google Dorking, Shodan, WHOIS, and social media.
+Scanning and Enumeration
+
+Identifying open ports, services, and vulnerabilities.
+Tools: Nmap (network mapping), Nessus (vulnerability scanning).
+Gaining Access
+
+Exploiting vulnerabilities to enter a system.
+Tools: Metasploit Framework, Exploit-DB.
+Maintaining Access
+
+Once inside a system, an attacker tries to maintain control for future exploitation.
+Techniques: Backdoors, rootkits.
+Covering Tracks
+
+Deleting or modifying logs to prevent detection.
+Importance: Ethical hackers should not do this in real-world engagements. Only attackers seek to hide their presence.
+
+5. Common Tools in Offensive Security
+Kali Linux: A Linux distribution pre-loaded with a wide range of penetration testing tools.
+Metasploit: A tool for developing and executing exploits against vulnerable systems.
+Wireshark: A network protocol analyzer for monitoring traffic.
+Burp Suite: A tool for testing web application security.
+Social-Engineer Toolkit (SET): A framework designed for conducting social engineering attacks.
+
+6. Ethical Hacking vs. Malicious Hacking
+Ethical Hacking: Done with permission, following a code of conduct, and aimed at improving security.
+Malicious Hacking: Done illegally with the intent to cause harm or gain unauthorized access.
+Ethical hackers must always:
+
+Obtain written consent before testing.
+Avoid causing damage to systems.
+Report all vulnerabilities discovered.
+Help organizations improve their defenses.
+
+7. Real-Life Application of Offensive Security
+Many organizations, including large corporations, governments, and even small businesses, hire ethical hackers to test their systems. These professionals play an essential role in identifying weaknesses and helping to secure critical infrastructures.
+
+8. Career Opportunities in Offensive Security
+Penetration Tester: Conducts regular tests on networks and systems to find vulnerabilities.
+Red Team Member: Engages in adversarial simulations to test a company's security.
+Security Researcher: Discovers new vulnerabilities and develops patches or fixes.
+Bug Bounty Hunter: Finds vulnerabilities in software and websites for monetary rewards.
+
+9. Legal and Ethical Considerations
+Legal Framework: Offensive security activities must comply with laws such as the Computer Fraud and Abuse Act (CFAA) and data protection regulations (e.g., GDPR, HIPAA).
+Code of Conduct: Ethical hackers must follow strict ethical guidelines to avoid causing harm or violating privacy.
+
+10. Conclusion
+Offensive security is a proactive and crucial part of modern cybersecurity. By learning offensive techniques, ethical hackers can help organizations identify and mitigate vulnerabilities before real attackers exploit them. Remember, offensive security is about responsibility, ethics, and helping to make the cyber world safer for everyone.
+
+
+                        
+                        `
                     },
                     {  
                      date: "26 September",
                         day: "Thursday",
-                        content: ``
+                        content: `Firewalls and Their Role in Offensive Security
+Overview
+Firewalls are an essential part of any security infrastructure, acting as the first line of defense against unauthorized access. Offensive security professionals often assess firewalls to find weaknesses in network security. This lecture will explain the concept of firewalls, how they work, and how offensive security techniques target them. We'll also include a hands-on exercise to explore firewall functionality.
+
+Lesson Objectives
+By the end of this lesson, students will:
+
+Understand what firewalls are and how they work.
+Learn how firewalls fit into the broader network security landscape.
+Explore how offensive security experts test and bypass firewalls.
+Conduct a hands-on exercise to understand firewall rules and configurations.
+1. What is a Firewall?
+A firewall is a network security device that monitors incoming and outgoing traffic and decides whether to allow or block specific traffic based on predefined security rules. Firewalls can be hardware-based, software-based, or a combination of both.
+
+2. Types of Firewalls
+Packet Filtering Firewall: Examines packets of data as they pass through, allowing or denying based on source/destination IP, port number, and protocol.
+Stateful Inspection Firewall: Monitors active connections and makes decisions based on the state and context of traffic.
+Next-Generation Firewall (NGFW): Goes beyond stateful inspection, incorporating features like deep packet inspection, application awareness, and intrusion prevention.
+Proxy Firewall: Acts as an intermediary between a user and the internet, analyzing data at the application layer.
+Unified Threat Management (UTM): A solution that includes a firewall alongside other security services like antivirus, VPN, and intrusion detection.
+
+3. How Firewalls Relate to Offensive Security
+Firewalls can limit an attacker's ability to exploit vulnerabilities within a network by controlling traffic flow. However, offensive security professionals test firewall configurations to find weak points that may allow them to bypass defenses.
+
+Penetration Testing on Firewalls: Involves identifying open ports, services, and misconfigurations that could allow unauthorized access.
+Firewall Evasion Techniques: Attackers use methods like tunneling, spoofing, or fragmentation to bypass firewalls.
+Reconnaissance: Attackers can use tools like Nmap to scan for open ports and services, helping identify firewall rules.
+
+4. Firewall Rules and Configuration
+Firewalls operate on a set of rules (called Access Control Lists, or ACLs) that determine whether traffic should be allowed or blocked. These rules are based on:
+
+Source IP/Port
+Destination IP/Port
+Protocol (e.g., TCP, UDP, ICMP)
+Direction (inbound or outbound traffic)
+
+Firewall Rule Example:
+Allow TCP traffic from internal network (192.168.1.0/24) to any destination on port 80 (HTTP).
+Deny all other traffic to external networks.
+
+
+5. Hands-On Lab: Configuring and Testing a Firewall
+We will configure and test basic firewall rules using UFW (Uncomplicated Firewall) on Linux. UFW simplifies the process of managing iptables rules for beginner users.
+
+Step 1: Install UFW
+If UFW is not installed on your system, install it with the following command:
+
+bash
+sudo apt-get install ufw
+
+Step 2: Enable the Firewall
+Start UFW and set it to enable automatically at boot:
+
+bash
+sudo ufw enable
+
+Step 3: Check Firewall Status
+To verify that the firewall is active, check its status:
+
+bash
+sudo ufw status
+This will show you whether the firewall is active and which rules are applied.
+
+Step 4: Set Basic Rules
+Allow SSH (port 22):
+
+bash
+sudo ufw allow ssh
+
+Allow HTTP (port 80):
+bash
+sudo ufw allow http
+
+Allow HTTPS (port 443):
+bash
+sudo ufw allow https
+Block All Incoming Traffic (except those explicitly allowed):
+
+bash
+sudo ufw default deny incoming
+
+Allow All Outgoing Traffic:
+bash
+sudo ufw default allow outgoing
+
+Step 5: Testing the Firewall Rules
+Test allowed services: Use curl or a web browser to access a website, which should work as HTTP and HTTPS traffic are allowed.
+bash
+curl http://example.com
+
+Test blocked traffic: Try to access a port or service that is not allowed, e.g., port 1234, to verify that the traffic is blocked.
+bash
+nc -zv 192.168.1.10 1234
+
+Step 6: Log Firewall Activity
+Enable logging to see what traffic is being allowed or blocked by the firewall:
+
+bash
+sudo ufw logging on
+
+To view the logs:
+
+bash
+tail -f /var/log/ufw.log
+
+
+6. Offensive Security Techniques for Testing Firewalls
+Penetration testers use specific techniques to test and bypass firewalls during an offensive security engagement. Common techniques include:
+
+Port Scanning: Tools like Nmap are used to detect open ports and services behind a firewall.
+
+bash
+nmap -Pn -p 1-65535 <target IP>
+This scans all 65,535 ports on the target to see which ones are open.
+
+Banner Grabbing: Attackers attempt to gather information about services running on open ports by "grabbing" the banner (response header) from the service.
+
+bash
+nc <target IP> <open port>
+
+
+Firewall Evasion Techniques:
+
+Fragmentation: Attackers send fragmented packets to bypass stateful inspection firewalls that may not properly reassemble them.
+Tunneling: Encapsulating traffic within protocols allowed by the firewall, such as tunneling malicious traffic over HTTP or HTTPS.
+Spoofing IP Addresses: Attackers may spoof their IP address to bypass simple packet-filtering firewalls that rely solely on source IP.
+
+
+7. Hands-On Lab: Firewall Penetration Testing
+In this exercise, we will use Nmap to perform a basic penetration test on a target protected by a firewall.
+
+Step 1: Port Scanning
+Run the following Nmap command to scan all ports on a target:
+
+bash
+nmap -Pn -p- <target IP>
+
+Step 2: Service Detection
+Use Nmap's service detection feature to identify the services running behind the firewall:
+
+bash
+nmap -sV <target IP>
+Step 3: Firewall Evasion (Optional)
+Attempt to bypass the firewall using a fragmented packet scan:
+
+bash
+nmap -f <target IP>
+
+Step 4: Analyze the Results
+Review the scan results to identify open ports and services that may be vulnerable. Discuss how these results could help an attacker find entry points.
+
+8. Conclusion
+Firewalls are a critical component of network security, acting as the first line of defense against unauthorized access. In offensive security, understanding and testing firewall rules and configurations is crucial for identifying weaknesses in an organization's defenses. Through the hands-on lab, we've learned how to configure a firewall using UFW, test firewall rules, and simulate penetration testing techniques to assess firewalls.`
                     },
                     {  
                 date: "27 September",
