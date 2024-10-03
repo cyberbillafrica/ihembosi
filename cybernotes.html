@@ -572,7 +572,137 @@ Intrusion Detection Systems (IDS) play a critical role in monitoring and detecti
             {
                 date: "3 October",
                 day: "Thursday",
-                content: ``
+                content: `Web Security - Identifying and Mitigating Phishing Threats
+Overview
+Phishing is one of the most common and dangerous threats in web security, where attackers trick users into providing sensitive information by impersonating legitimate entities. This lecture will cover how to identify phishing attacks, common techniques used by attackers, and strategies for mitigating phishing threats, followed by hands-on exercises to enhance your understanding.
+
+Lesson Objectives
+By the end of this lesson, students will:
+
+Understand what phishing is and its various forms.
+Identify the different techniques used in phishing attacks.
+Learn how to mitigate phishing threats through security awareness and technical measures.
+Conduct hands-on exercises to recognize phishing attempts and configure phishing prevention tools.
+1. What is Phishing?
+Phishing is a form of cyberattack where attackers masquerade as trusted entities to steal sensitive information such as usernames, passwords, and credit card details. It typically occurs via email, social media, or malicious websites.
+
+Common Phishing Techniques:
+Email Phishing: Attackers send fraudulent emails posing as legitimate organizations to trick users into revealing sensitive data or downloading malicious software.
+Spear Phishing: A more targeted form of phishing, where attackers personalize emails to specific individuals or organizations.
+Clone Phishing: Attackers replicate legitimate emails but modify the links or attachments to redirect victims to malicious websites.
+Smishing and Vishing: Phishing through SMS (smishing) or phone calls (vishing) to deceive individuals into divulging sensitive information.
+2. How Phishing Works
+Phishing attacks typically follow these steps:
+
+Baiting: The attacker sends a message that looks like it's from a legitimate source, often containing urgent or alarming messages to prompt action.
+Luring: The victim clicks on a link or downloads an attachment, unknowingly initiating the attack.
+Harvesting: The victim is redirected to a fake website or malware is installed, allowing the attacker to steal sensitive data.
+Exploitation: The attacker uses the stolen information for identity theft, financial fraud, or further attacks.
+3. How to Identify Phishing Threats
+Phishing attacks can be subtle but often share common signs. Key indicators of phishing emails or websites include:
+
+Suspicious URLs: Look for subtle changes in domain names (e.g., "amazon-security-check.com" instead of "amazon.com").
+Unusual Senders: Emails from unexpected sources or generic email addresses (e.g., support@service-help.com instead of official company domains).
+Grammar and Spelling Mistakes: Legitimate organizations usually send well-written messages, while phishing emails often contain errors.
+Urgent or Threatening Language: Phishing emails often create a sense of urgency (e.g., "Your account will be suspended if you don't take action immediately").
+Unsolicited Attachments or Links: Be wary of unsolicited attachments or links asking for personal information.
+4. Real-World Examples of Phishing
+PayPal Phishing: Attackers send emails claiming there's an issue with a PayPal account, asking users to click a link and re-enter their credentials on a fake PayPal website.
+
+COVID-19 Phishing: During the pandemic, phishing campaigns pretended to be official health organizations providing updates or relief but redirected victims to malicious websites.
+
+5. How to Mitigate Phishing Threats
+There are two primary methods for mitigating phishing threats: Security Awareness and Technical Solutions.
+
+A. Security Awareness
+Employee Training: Regular training sessions to educate employees about phishing risks, recognizing phishing emails, and safe online behavior.
+Phishing Simulations: Conduct simulated phishing campaigns to test the awareness and readiness of employees to recognize phishing attempts.
+Verify Requests for Sensitive Information: Train users to verify requests for sensitive information through official channels, avoiding interaction with unsolicited emails.
+B. Technical Solutions
+Email Filtering: Use spam filters and anti-phishing email solutions to block malicious emails.
+Example: Microsoft 365 Advanced Threat Protection or Google Workspace Email Security.
+Multi-Factor Authentication (MFA): Implement MFA for all user accounts. Even if phishing is successful, attackers will still require a second authentication factor.
+SSL/TLS Certificates: Ensure all websites use HTTPS, as users can verify whether they are interacting with a legitimate site.
+URL Filtering: Block access to known malicious websites and phishing domains.
+Browser Security Features: Enable browser-based security measures, such as anti-phishing tools and safe browsing features (e.g., Google's Safe Browsing).
+6. Hands-On Lab: Recognizing and Blocking Phishing Emails
+In this exercise, we’ll simulate a phishing scenario and then implement protections using both awareness and technical controls.
+
+Step 1: Simulate a Phishing Attack
+Receive a Phishing Email:
+
+Use a phishing email template (or create one) that appears to come from a legitimate source (e.g., bank, online store).
+The email should contain a link to a fake login page.
+Review the Email for Phishing Signs:
+
+Analyze the sender address (check if it’s a legitimate domain).
+Hover over the links in the email and inspect the URL for suspicious patterns.
+Look for grammar and spelling errors or unusual attachments.
+Step 2: Enable Phishing Protection in Gmail
+Open Gmail settings:
+
+Go to the settings gear icon in Gmail, and select "See all settings".
+Enable Phishing and Spam Detection:
+
+Under the Filters and Blocked Addresses tab, you can configure Gmail to block suspicious senders.
+Use the Phishing Protection option under the General tab to enhance your email filtering.
+Enable Safe Browsing in Google Chrome:
+
+Open Settings > Privacy and Security > Security > Enable Enhanced protection to block known phishing sites.
+Step 3: Phishing Awareness Test
+Set Up a Phishing Simulation:
+
+Use tools like Gophish or KnowBe4 to send simulated phishing emails to yourself or other test accounts.
+See if the email gets flagged by your email filtering tools, or if users can detect the phishing attempt.
+Review Results:
+
+Did the phishing email get through the email filters?
+Were users able to identify the phishing attempt?
+Step 4: Report a Phishing Attempt
+In Gmail: Open the phishing email and click the three-dot menu in the top-right corner, then select "Report Phishing".
+In Microsoft Outlook: Right-click on the phishing email and choose "Mark as Phishing".
+7. Offensive Security Techniques for Phishing Simulations
+Phishing simulations are used in offensive security to assess how vulnerable an organization is to phishing attacks. Penetration testers create controlled phishing campaigns to test awareness and response. Techniques include:
+
+Social Engineering: Pen testers craft emails that mimic real-world phishing attacks using techniques such as:
+
+Impersonating executives (CEO Fraud).
+Offering fake incentives (e.g., gift cards).
+Using compromised or spoofed domains.
+Spear Phishing: Testers target specific individuals, tailoring emails to their role within an organization for a higher success rate.
+
+Malicious Links: Test whether employees click on URLs leading to credential harvesting websites or download harmful attachments.
+
+8. Hands-On Lab: Using Gophish for Phishing Simulations
+In this exercise, we will set up a phishing simulation using Gophish, a popular open-source phishing simulation tool.
+
+Step 1: Install Gophish
+Download Gophish from the official GitHub repository:
+
+bash
+Copy code
+wget https://github.com/gophish/gophish/releases/download/v0.11.0/gophish-v0.11-linux-64bit.zip
+Extract the zip file:
+
+bash
+Copy code
+unzip gophish-v0.11-linux-64bit.zip
+cd gophish
+Start the Gophish server:
+
+bash
+Copy code
+./gophish
+Step 2: Set Up a Phishing Campaign
+Log in to Gophish’s web interface at https://localhost:3333 (default credentials: admin/gophish).
+Create Email Templates: Design a phishing email that looks legitimate but contains links to a phishing landing page.
+Set Up a Landing Page: Create a fake login page to simulate credential harvesting.
+Launch the Campaign: Send the phishing email to test users and monitor who clicks the link or enters credentials.
+Step 3: Analyze Results
+Check Gophish’s dashboard to see how many users opened the email, clicked the link, or entered credentials.
+Review how effective your email filtering tools were in blocking or detecting the phishing email.
+9. Conclusion
+Phishing is a significant threat to web security, but with the right awareness training and technical controls, it can be effectively mitigated. Identifying phishing signs, implementing multi-factor authentication, and conducting phishing simulations are essential steps in defending against these attacks. Through this hands-on lab, we learned how to recognize phishing emails, implement protective measures, and simulate phishing attacks to test security awareness.`
             },
             {
                 date: "4 October",
