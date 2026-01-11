@@ -115,7 +115,13 @@
 </head>
 
 </style>
-    
+
+	<script>
+if (localStorage.getItem("auth") !== "true") {
+  location.href = "login.html";
+}
+</script>
+
   </head>
 
       
@@ -572,4 +578,5 @@ fetch('code.json')
   </body>
   
   </html>
+
 
