@@ -94,33 +94,60 @@ function showLogin() {
 
 /* ACTIONS */
 function login() {
-  const u = loginUsername.value.trim();
-  const p = loginPassword.value.trim();
-  if (!u || !p) return showMessage("Fill all fields", "danger");
+  const u = document.getElementById("loginUsername").value.trim();
+  const p = document.getElementById("loginPassword").value.trim();
+
+  if (!u || !p) {
+    showMessage("Fill all fields", "danger");
+    return;
+  }
+
   sendData("login", u, p);
 }
 
 function registerUser() {
-  const u = registerUsername.value.trim();
-  const p = registerPassword.value.trim();
-  if (!u || !p) return showMessage("Fill all fields", "danger");
+  const u = document.getElementById("registerUsername").value.trim();
+  const p = document.getElementById("registerPassword").value.trim();
+
+  if (!u || !p) {
+    showMessage("Fill all fields", "danger");
+    return;
+  }
+
+  if (p.length < 6) {
+    showMessage("Password must be at least 6 characters", "danger");
+    return;
+  }
+
   sendData("register", u, p);
 }
 
 /* CORE FETCH */
 function sendData(action, username, password) {
+  const formData = new FormData();
+  formData.append("action", action);
+  formData.append("username", username);
+  formData.append("password", password);
+
   fetch(SCRIPT_URL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ action, username, password })
+    body: formData
   })
-  .then(r => r.json())
-  .then(data => {
+  .then(res => res.text())
+  .then(text => {
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      throw new Error("Invalid server response");
+    }
+
     if (data.status === "success") {
       showMessage(data.message, "success");
+
       if (action === "login") {
+        localStorage.setItem("studentAuth", "true");
+        localStorage.setItem("studentUser", username);
         setTimeout(() => location.href = "dashboard.html", 1000);
       } else {
         showLogin();
@@ -130,8 +157,8 @@ function sendData(action, username, password) {
     }
   })
   .catch(err => {
-    showMessage("Server connection failed", "danger");
     console.error(err);
+    showMessage("Server connection failed", "danger");
   });
 }
 </script>
