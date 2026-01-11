@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<input id="username" placeholder="Username"><br><br>
+<input id="password" type="password" placeholder="Password"><br><br>
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbznOew-G8V0pKDb6XJprCGxKZ4yzu9jA3F9lq1jVY4d6iLD_WxHGCH3QGL6TsWc20GLkw/exec";
+
+function login() {
+  const u = username.value.trim();
+  const p = password.value.trim();
+  msg.innerText = "";
+
+  if (!u || !p) {
+    msg.innerText = "Fill all fields";
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("action", "login");
+  formData.append("username", u);
+  formData.append("password", p);
+
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    body: formData
+  })
+  .then(r => r.text())
+  .then(text => {
+    if (text.startsWith("SUCCESS")) {
+      const role = text.split("|")[1];
+
+      localStorage.setItem("auth", "true");
+      localStorage.setItem("user", u);
+      localStorage.setItem("role", role);
+
+      if (role === "admin") {
+        location.href = "admin.html";
+      } else {
+        location.href = "dashboard.html";
+      }
+    } else {
+      msg.innerText = text;
+    }
+  })
+  .catch(() => {
+    msg.innerText = "Server error";
+  });
+}
+</script>
+
+</body>
+</html>
