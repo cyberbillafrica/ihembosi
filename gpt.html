@@ -1,155 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Student Authentication</title>
+<meta charset="UTF-8">
+<title>Student Auth</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            background: #f2f2f2;
-        }
-        .auth-card {
-            max-width: 420px;
-            margin: auto;
-            margin-top: 80px;
-        }
-        .toggle-link {
-            cursor: pointer;
-            color: #0d6efd;
-            text-decoration: underline;
-        }
-        #message {
-            display: none;
-        }
-    </style>
+<style>
+body {
+  background: #f2f2f2;
+}
+.auth-card {
+  max-width: 420px;
+  margin: 80px auto;
+}
+.toggle-link {
+  cursor: pointer;
+  color: #0d6efd;
+  text-decoration: underline;
+}
+</style>
 </head>
+
 <body>
 
 <div class="container">
-    <div class="card auth-card shadow border-0">
-        <div class="card-body p-4">
+  <div class="card auth-card shadow border-0">
+    <div class="card-body p-4">
 
-            <!-- MESSAGE -->
-            <div id="message" class="alert"></div>
+      <!-- MESSAGE -->
+      <div id="message" class="alert d-none"></div>
 
-            <!-- LOGIN FORM -->
-            <div id="loginForm">
-                <h3 class="text-center mb-4">Student Login</h3>
+      <!-- LOGIN -->
+      <div id="loginForm">
+        <h4 class="text-center mb-4">Student Login</h4>
 
-                <input type="text" id="loginUsername" class="form-control mb-3" placeholder="Username" required>
-                <input type="password" id="loginPassword" class="form-control mb-3" placeholder="Password" required>
+        <input id="loginUsername" class="form-control mb-3" placeholder="Username">
+        <input id="loginPassword" type="password" class="form-control mb-3" placeholder="Password">
 
-                <button class="btn btn-dark w-100 mb-3" onclick="login()">Login</button>
+        <button class="btn btn-dark w-100 mb-3" onclick="login()">Login</button>
 
-                <p class="text-center mb-0">
-                    No account?
-                    <span class="toggle-link" onclick="showRegister()">Register</span>
-                </p>
-            </div>
+        <p class="text-center">
+          No account?
+          <span class="toggle-link" onclick="showRegister()">Register</span>
+        </p>
+      </div>
 
-            <!-- REGISTER FORM -->
-            <div id="registerForm" style="display:none;">
-                <h3 class="text-center mb-4">Student Registration</h3>
+      <!-- REGISTER -->
+      <div id="registerForm" class="d-none">
+        <h4 class="text-center mb-4">Register</h4>
 
-                <input type="text" id="registerUsername" class="form-control mb-3" placeholder="Username" required>
-                <input type="password" id="registerPassword" class="form-control mb-3" placeholder="Password" required>
+        <input id="registerUsername" class="form-control mb-3" placeholder="Username">
+        <input id="registerPassword" type="password" class="form-control mb-3" placeholder="Password">
 
-                <button class="btn btn-primary w-100 mb-3" onclick="registerUser()">Register</button>
+        <button class="btn btn-primary w-100 mb-3" onclick="registerUser()">Register</button>
 
-                <p class="text-center mb-0">
-                    Already have an account?
-                    <span class="toggle-link" onclick="showLogin()">Back to Login</span>
-                </p>
-            </div>
+        <p class="text-center">
+          Have an account?
+          <span class="toggle-link" onclick="showLogin()">Back to Login</span>
+        </p>
+      </div>
 
-        </div>
     </div>
+  </div>
 </div>
 
 <script>
-    // 🔴 PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwAd8fbNj_vq43BjhOjycCFcUUPOqtFLVyRWxqGC5iiJgYmUyY3if74Htgbe2xiUoPZsA/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwAd8fbNj_vq43BjhOjycCFcUUPOqtFLVyRWxqGC5iiJgYmUyY3if74Htgbe2xiUoPZsA/exec";
 
-    function showRegister() {
-        hideMessage();
-        document.getElementById("loginForm").style.display = "none";
-        document.getElementById("registerForm").style.display = "block";
+/* UI HELPERS */
+function showMessage(text, type) {
+  const msg = document.getElementById("message");
+  msg.className = `alert alert-${type}`;
+  msg.textContent = text;
+  msg.classList.remove("d-none");
+}
+
+function clearMessage() {
+  document.getElementById("message").classList.add("d-none");
+}
+
+function showRegister() {
+  clearMessage();
+  document.getElementById("loginForm").classList.add("d-none");
+  document.getElementById("registerForm").classList.remove("d-none");
+}
+
+function showLogin() {
+  clearMessage();
+  document.getElementById("registerForm").classList.add("d-none");
+  document.getElementById("loginForm").classList.remove("d-none");
+}
+
+/* ACTIONS */
+function login() {
+  const u = loginUsername.value.trim();
+  const p = loginPassword.value.trim();
+  if (!u || !p) return showMessage("Fill all fields", "danger");
+  sendData("login", u, p);
+}
+
+function registerUser() {
+  const u = registerUsername.value.trim();
+  const p = registerPassword.value.trim();
+  if (!u || !p) return showMessage("Fill all fields", "danger");
+  sendData("register", u, p);
+}
+
+/* CORE FETCH */
+function sendData(action, username, password) {
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ action, username, password })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.status === "success") {
+      showMessage(data.message, "success");
+      if (action === "login") {
+        setTimeout(() => location.href = "dashboard.html", 1000);
+      } else {
+        showLogin();
+      }
+    } else {
+      showMessage(data.message, "danger");
     }
-
-    function showLogin() {
-        hideMessage();
-        document.getElementById("registerForm").style.display = "none";
-        document.getElementById("loginForm").style.display = "block";
-    }
-
-    function showMessage(text, type) {
-        const msg = document.getElementById("message");
-        msg.className = `alert alert-${type}`;
-        msg.innerText = text;
-        msg.style.display = "block";
-    }
-
-    function hideMessage() {
-        document.getElementById("message").style.display = "none";
-    }
-
-    function login() {
-        const username = document.getElementById("loginUsername").value.trim();
-        const password = document.getElementById("loginPassword").value.trim();
-
-        if (!username || !password) {
-            showMessage("Please fill in all fields.", "danger");
-            return;
-        }
-
-        sendData("login", username, password);
-    }
-
-    function registerUser() {
-        const username = document.getElementById("registerUsername").value.trim();
-        const password = document.getElementById("registerPassword").value.trim();
-
-        if (!username || !password) {
-            showMessage("Please fill in all fields.", "danger");
-            return;
-        }
-
-        sendData("register", username, password);
-    }
-
-    function sendData(action, username, password) {
-        fetch(SCRIPT_URL, {
-            method: "POST",
-            body: JSON.stringify({
-                action: action,
-                username: username,
-                password: password
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === "success") {
-                showMessage(data.message, "success");
-
-                if (action === "login") {
-                    // 🔹 Redirect after successful login
-                    setTimeout(() => {
-                        window.location.href = "portal.html";
-                    }, 1000);
-                } else {
-                    showLogin();
-                }
-            } else {
-                showMessage(data.message, "danger");
-            }
-        })
-        .catch(() => {
-            showMessage("Login Failed. Try again.", "danger");
-        });
-    }
+  })
+  .catch(err => {
+    showMessage("Server connection failed", "danger");
+    console.error(err);
+  });
+}
 </script>
 
 </body>
