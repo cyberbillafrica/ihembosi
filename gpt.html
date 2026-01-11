@@ -21,9 +21,19 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbznOew-G8V0pKDb6XJpr
 function register() {
   const u = document.getElementById("username").value.trim();
   const p = document.getElementById("password").value.trim();
+  const msg = document.getElementById("msg");
 
+  msg.innerText = "";
+
+  // ✅ REQUIRED FIELDS
   if (!u || !p) {
-    document.getElementById("msg").innerText = "Fill all fields";
+    msg.innerText = "Fill all fields";
+    return;
+  }
+
+  // ✅ MINIMUM PASSWORD RULE
+  if (p.length < 6) {
+    msg.innerText = "Password must be at least 6 characters";
     return;
   }
 
@@ -38,13 +48,15 @@ function register() {
   .then(r => r.text())
   .then(text => {
     if (text === "SUCCESS") {
-      document.getElementById("msg").innerText = "Registered successfully";
+      msg.innerText = "Registered successfully";
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
     } else {
-      document.getElementById("msg").innerText = "Registration failed";
+      msg.innerText = text; // shows backend messages clearly
     }
   })
   .catch(() => {
-    document.getElementById("msg").innerText = "Server error";
+    msg.innerText = "Server error";
   });
 }
 </script>
