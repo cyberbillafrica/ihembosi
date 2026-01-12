@@ -16,7 +16,7 @@
 <p id="msg"></p>
 
   <a href="register.html">
-  <button type="button">No Account, Register</button>
+  <button type="button">No Account? Register</button>
 </a>
 
 
@@ -24,8 +24,10 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbznOew-G8V0pKDb6XJprCGxKZ4yzu9jA3F9lq1jVY4d6iLD_WxHGCH3QGL6TsWc20GLkw/exec";
 
 function login() {
-  const u = username.value.trim();
-  const p = password.value.trim();
+  const u = document.getElementById("username").value.trim();
+  const p = document.getElementById("password").value.trim();
+  const msg = document.getElementById("msg");
+
   msg.innerText = "";
 
   if (!u || !p) {
@@ -34,7 +36,7 @@ function login() {
   }
 
   const formData = new FormData();
-  formData.append("action", "login");
+  formData.append("action", "login");   // 🔴 REQUIRED
   formData.append("username", u);
   formData.append("password", p);
 
@@ -44,18 +46,16 @@ function login() {
   })
   .then(r => r.text())
   .then(text => {
-    if (text.startsWith("SUCCESS")) {
+    if (text.startsWith("LOGIN_SUCCESS")) {
       const role = text.split("|")[1];
 
       localStorage.setItem("auth", "true");
       localStorage.setItem("user", u);
       localStorage.setItem("role", role);
 
-      if (role === "admin") {
-        location.href = "admin.html";
-      } else {
-        location.href = "portal.html";
-      }
+      location.href = role === "admin"
+        ? "admin.html"
+        : "portal.html";  
     } else {
       msg.innerText = text;
     }
