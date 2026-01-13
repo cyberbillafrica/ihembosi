@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+</head>
+<body>
+
+<h2>Admin Panel</h2>
+
+<p id="welcome"></p>
+
+<button onclick="logout()">Logout</button>
+
+<hr>
+
+<h3>Admin Actions</h3>
+<ul>
+  <li>Manage users</li>
+  <li>View reports</li>
+  <li>System settings</li>
+</ul>
+
+<script>
+// ================= AUTH CHECK =================
+const auth = localStorage.getItem("auth");
+const role = localStorage.getItem("role");
+const user = localStorage.getItem("user");
+
+if (auth !== "true" || role !== "admin") {
+  alert("Unauthorized access");
+  location.href = "login.html";
+}
+
+// ================= WELCOME MESSAGE =================
+document.getElementById("welcome").innerText =
+  "Welcome, Admin " + user;
+
+// ================= LOGOUT =================
+function logout() {
+  localStorage.clear();
+  location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
